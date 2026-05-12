@@ -1,0 +1,30 @@
+# Compilación y binarios
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Configuración de VS Code
+.vscode/
+.history/
+*.code-workspace
+
+# Herramientas de pruebas y APIs
+/postman/
+.postman_globals.json
+
+# Archivos del Sistema Operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# (Opcional) Configuración específica de IDEs adicionales
+.settings/
+.project
+.classpath
+.factorypath
+.nb-cache/
+nbproject/
