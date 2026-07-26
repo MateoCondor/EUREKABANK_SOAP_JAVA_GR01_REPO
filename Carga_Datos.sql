@@ -1,55 +1,46 @@
 /*
 Empresa        : EurekaBank
-Script         : Carga de datos
-Base de Datos  : eurekabank
+Script         : Carga de datos para Microservicios
+Descripción    : Inserta los datos históricos divididos en las 3 bases de datos.
 */
 
-USE eurekabank;
 SET NAMES utf8mb4;
 
 -- ============================================================
--- Limpieza (orden respetando llaves foraneas)
+-- 1. BASE DE DATOS: clientes_db
 -- ============================================================
-DELETE FROM transactions;
-DELETE FROM accounts;
-DELETE FROM clients;
-DELETE FROM users;
-DELETE FROM parameters;
+USE clientes_db;
 
--- Reiniciar secuencias para mantener IDs predecibles en esta carga
-ALTER TABLE users AUTO_INCREMENT = 1;
+DELETE FROM clients WHERE ID > 0;
+DELETE FROM users WHERE USERNAME != 'MONSTER';
+DELETE FROM parameters WHERE ID > 0;
+
 ALTER TABLE clients AUTO_INCREMENT = 1;
-ALTER TABLE accounts AUTO_INCREMENT = 1;
-ALTER TABLE transactions AUTO_INCREMENT = 1;
 ALTER TABLE parameters AUTO_INCREMENT = 1;
 
--- ============================================================
--- Tabla: users (generada desde clientes historicos)
--- ============================================================
+-- Los passwords han sido hasheados usando el nuevo PasswordUtil (salt:hash)
+-- El password original para todos los usuarios era '123456'
 INSERT INTO users (ID, PASSWORD, ROLE, STATUS, USERNAME) VALUES
-(2,  '123456', 'USER', 'ACTIVE', 'cli00001'),
-(3,  '123456', 'USER', 'ACTIVE', 'cli00003'),
-(4,  '123456', 'USER', 'ACTIVE', 'cli00004'),
-(5,  '123456', 'USER', 'ACTIVE', 'cli00005'),
-(6,  '123456', 'USER', 'ACTIVE', 'cli00006'),
-(7,  '123456', 'USER', 'ACTIVE', 'cli00007'),
-(8,  '123456', 'USER', 'ACTIVE', 'cli00008'),
-(9,  '123456', 'USER', 'ACTIVE', 'cli00009'),
-(10, '123456', 'USER', 'ACTIVE', 'cli00010'),
-(11, '123456', 'USER', 'ACTIVE', 'cli00011'),
-(12, '123456', 'USER', 'ACTIVE', 'cli00012'),
-(13, '123456', 'USER', 'ACTIVE', 'cli00013'),
-(14, '123456', 'USER', 'ACTIVE', 'cli00014'),
-(15, '123456', 'USER', 'ACTIVE', 'cli00015'),
-(16, '123456', 'USER', 'ACTIVE', 'cli00016'),
-(17, '123456', 'USER', 'ACTIVE', 'cli00017'),
-(18, '123456', 'USER', 'ACTIVE', 'cli00018'),
-(19, '123456', 'USER', 'ACTIVE', 'cli00019'),
-(20, '123456', 'USER', 'ACTIVE', 'cli00020');
+(2,  'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00001'),
+(3,  'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00003'),
+(4,  'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00004'),
+(5,  'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00005'),
+(6,  'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00006'),
+(7,  'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00007'),
+(8,  'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00008'),
+(9,  'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00009'),
+(10, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00010'),
+(11, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00011'),
+(12, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00012'),
+(13, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00013'),
+(14, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00014'),
+(15, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00015'),
+(16, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00016'),
+(17, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00017'),
+(18, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00018'),
+(19, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00019'),
+(20, 'rs72j3vEFfdpiodh0n75Rw==:eN5OIpPwm43scDciwgRWeONNwiqWlkX+g74BIv6Ovdw=', 'USER', 'ACTIVE', 'cli00020');
 
--- ============================================================
--- Tabla: clients (adaptada desde tabla cliente)
--- ============================================================
 INSERT INTO clients (ID, DNI, EMAIL, NAME, PHONE, STATUS, user_id) VALUES
 (1,  '06914897', 'gcoronel@viabcp.com',         'CORONEL CASTILLO ERIC GUSTAVO',      '9666-4457',  'ACTIVE', 2),
 (2,  '01576173', 'pvalencia@terra.com.pe',      'VALENCIA MORALES PEDRO HUGO',         '924-7834',   'ACTIVE', 3),
@@ -72,8 +63,13 @@ INSERT INTO clients (ID, DNI, EMAIL, NAME, PHONE, STATUS, user_id) VALUES
 (19, '10772365', 'f.zegarra@hotmail.com',       'ZEGARRA GARCIA FERNANDO MOISES',      '936-45876',  'ACTIVE', 20);
 
 -- ============================================================
--- Tabla: accounts (adaptada desde tabla cuenta)
+-- 2. BASE DE DATOS: cuentas_db
 -- ============================================================
+USE cuentas_db;
+
+DELETE FROM accounts WHERE ID > 0;
+ALTER TABLE accounts AUTO_INCREMENT = 1;
+
 INSERT INTO accounts (ID, ACCOUNTNUMBER, BALANCE, STATUS, TYPE, client_id) VALUES
 (1, '00200001', 7000.00, 'ACTIVE',    'SAVINGS', 1),
 (2, '00200002', 6800.00, 'ACTIVE',    'SAVINGS', 2),
@@ -82,10 +78,15 @@ INSERT INTO accounts (ID, ACCOUNTNUMBER, BALANCE, STATUS, TYPE, client_id) VALUE
 (5, '00100002', 4500.00, 'ACTIVE',    'SAVINGS', 5),
 (6, '00300001',    0.00, 'ACTIVE', 'SAVINGS', 10);
 
+
 -- ============================================================
--- Tabla: transactions (adaptada desde tabla movimiento)
--- TYPE conserva naturaleza del movimiento: DEPOSIT/WITHDRAW
+-- 3. BASE DE DATOS: transacciones_db
 -- ============================================================
+USE transacciones_db;
+
+DELETE FROM transactions WHERE ID > 0;
+ALTER TABLE transactions AUTO_INCREMENT = 1;
+
 INSERT INTO transactions (AMOUNT, DATE, DESCRIPTION, FEE, transfer_type, TYPE, source_account_id, target_account_id) VALUES
 (1800.00, '2022-01-08 00:00:00.000000', 'Apertura de Cuenta', NULL, NULL, 'DEPOSIT', 4, NULL),
 (1000.00, '2022-01-25 00:00:00.000000', 'Retiro',             NULL, NULL, 'WITHDRAW',  4, NULL),
@@ -130,4 +131,3 @@ INSERT INTO transactions (AMOUNT, DATE, DESCRIPTION, FEE, transfer_type, TYPE, s
 (5600.00, '2022-01-07 00:00:00.000000', 'Apertura de Cuenta', NULL, NULL, 'DEPOSIT', 6, NULL),
 (1400.00, '2022-01-18 00:00:00.000000', 'Deposito',           NULL, NULL, 'DEPOSIT', 6, NULL),
 (7000.00, '2022-01-25 00:00:00.000000', 'Cancelar Cuenta',    NULL, NULL, 'WITHDRAW',  6, NULL);
-

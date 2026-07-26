@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN"
+        "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<!--
+    Payara 10 / GlassFish datasource definition.
+    Despliega este archivo junto con el WAR, o configura el datasource
+    manualmente en la consola de administración de Payara en:
+      Resources > JDBC > JDBC Connection Pools > New
+      Resources > JDBC > JDBC Resources > New
+
+    Asegúrate de tener el conector MySQL (mysql-connector-j) en:
+      $PAYARA_HOME/glassfish/domains/<domain>/lib/
+
+    Base de datos MySQL: clientes_db (equivale al schema en Payara+MySQL)
+-->
+<resources>
+    <jdbc-connection-pool
+        name="MySQLPool_Clientes"
+        res-type="javax.sql.DataSource"
+        datasource-classname="com.mysql.cj.jdbc.MysqlDataSource">
+        <property name="serverName"   value="localhost"/>
+        <property name="portNumber"   value="3306"/>
+        <property name="databaseName" value="clientes_db"/>
+        <property name="user"         value="root"/>
+        <property name="password"     value="root"/>
+        <property name="useSSL"       value="false"/>
+        <property name="allowPublicKeyRetrieval" value="true"/>
+        <property name="characterEncoding" value="UTF-8"/>
+        <property name="serverTimezone" value="America/Guayaquil"/>
+    </jdbc-connection-pool>
+
+    <jdbc-resource
+        pool-name="MySQLPool_Clientes"
+        jndi-name="jdbc/eurekabank_clientes"/>
+</resources>

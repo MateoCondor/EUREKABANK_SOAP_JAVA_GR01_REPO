@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN"
+        "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <jdbc-connection-pool
+        name="MySQLPool_Transacciones"
+        res-type="javax.sql.DataSource"
+        datasource-classname="com.mysql.cj.jdbc.MysqlDataSource">
+        <property name="serverName"   value="localhost"/>
+        <property name="portNumber"   value="3306"/>
+        <property name="databaseName" value="transacciones_db"/>
+        <property name="user"         value="root"/>
+        <property name="password"     value="root"/>
+        <property name="useSSL"       value="false"/>
+        <property name="allowPublicKeyRetrieval" value="true"/>
+        <property name="characterEncoding" value="UTF-8"/>
+        <property name="serverTimezone" value="America/Guayaquil"/>
+    </jdbc-connection-pool>
+
+    <jdbc-resource
+        pool-name="MySQLPool_Transacciones"
+        jndi-name="jdbc/eurekabank_transacciones"/>
+</resources>

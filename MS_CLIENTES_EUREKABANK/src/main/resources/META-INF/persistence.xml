@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0"
+             xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
+    <persistence-unit name="ClientesPU" transaction-type="JTA">
+        <jta-data-source>jdbc/eurekabank_clientes</jta-data-source>
+
+        <!-- Entidades gestionadas por este microservicio -->
+        <class>ec.edu.monster.model.User</class>
+        <class>ec.edu.monster.model.Client</class>
+        <class>ec.edu.monster.model.Parameter</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <!-- Crea tablas automáticamente si no existen (usa "validate" en producción) -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+
+            <!-- EclipseLink (proveedor por defecto en Payara) -->
+            <property name="eclipselink.logging.level" value="WARNING"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.target-database" value="MySQL"/>
+        </properties>
+    </persistence-unit>
+</persistence>
